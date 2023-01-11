@@ -5,6 +5,8 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); /* Add a shadow to the logo */
+  transition: transform 0.8s ease-in-out;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -31,8 +33,10 @@
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
+    transform: rotateX(0deg) rotateY(0deg); /* Rotate the element in 3D space */
   }
   to {
     transform: rotate(360deg);
+    transform: rotateX(360deg) rotateY(360deg); /* Rotate the element in 3D space */
   }
 }

@@ -1,3 +1,11 @@
+## Project Tasks
+- [ ] Create a new React app
+- [ ] Create a cloudfront distribution
+- [ ] Deploy the app to AWS S3
+- [ ] Implement Cognito authentication
+- [ ] Implement a backend API with AWS Lambda in Python
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
