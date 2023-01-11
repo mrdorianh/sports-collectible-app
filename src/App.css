@@ -33,10 +33,10 @@
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
-    transform: rotateX(0deg) rotateY(0deg); /* Rotate the element in 3D space */
+    
   }
   to {
     transform: rotate(360deg);
-    transform: rotateX(360deg) rotateY(360deg); /* Rotate the element in 3D space */
+    
   }
 }
