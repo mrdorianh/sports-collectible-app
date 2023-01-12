@@ -1,0 +1,51 @@
+service: s3deploy-service
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: dev
+  region: us-east-1
+  environment:
+    BUCKET_NAME: sports-collectible-app-bucket
+  
+
+functions:
+  s3deploy:
+    handler: s3deploy.handler
+    events:
+      - s3:
+          bucket: !Ref SportsCollectibleAppBucket
+          event: s3:ObjectCreated:*
+          existing: true
+
+    
+
+resources:
+  Resources:
+    SportsCollectibleAppBucket:
+      Type: "AWS::S3::Bucket"
+      Properties:
+        BucketName: ${self:provider.environment.BUCKET_NAME}
+        VersioningConfiguration:
+          Status: Enabled
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: error.html
+        # Block public after cloudfront is configured
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          IgnorePublicAcls: false
+          BlockPublicPolicy: false
+          RestrictPublicBuckets: false
+    BucketPolicy:
+      Type: "AWS::S3::BucketPolicy"
+      Properties:
+        Bucket: !Ref SportsCollectibleAppBucket
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal: "*"
+              Action:
+                - s3:GetObject
+              Resource: !Join ["", ["arn:aws:s3:::", !Ref SportsCollectibleAppBucket, "/*"]]

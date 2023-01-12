@@ -1,7 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# ignore all files in the node_modules folder in all subdirectories
+node_modules/
+
+
 # dependencies
-/node_modules
 /.pnp
 .pnp.js
 
@@ -17,7 +20,11 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.zip
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.serverless/
+build/
