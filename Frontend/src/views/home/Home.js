@@ -8,7 +8,7 @@ const handleShare = async imageUrl => {
   try {
     const user = await Auth.currentAuthenticatedUser();
     const endpoint =
-      'https://vjerv5mi28.execute-api.us-east-1.amazonaws.com/dev/share';
+      'https://xxqomyqytl.execute-api.us-east-1.amazonaws.com/dev/share';
     const res = await axios.get(endpoint, {
       params: {
         imageUrl,
@@ -16,6 +16,7 @@ const handleShare = async imageUrl => {
       },
     });
     console.log(res);
+    alert(`Shared! ${JSON.stringify(res.data)}`);
   } catch (err) {
     console.error(err);
   }

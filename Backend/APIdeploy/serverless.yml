@@ -5,6 +5,17 @@ provider:
   runtime: python3.7
   stage: dev
   region: us-east-1
+  # create an IAM role that will be used by Lambda functions to access AWS DynamoDB
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:*:*:table/my_table"
 
 # exclude all files
 package:
@@ -22,3 +33,21 @@ functions:
       - http:
           path: share
           method: get
+    environment:
+      DYNAMODB_TABLE: my_table
+
+resources:
+  Resources:
+    myTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: my_table # replace 'my_table' with the name of your DynamoDB table
+        AttributeDefinitions:
+          - AttributeName: "userId"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "userId"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

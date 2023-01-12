@@ -5,6 +5,7 @@
   "dependencies": {
     "aws-amplify": "^1.1.28",
     "aws-amplify-react": "^2.3.8",
+    "boto3": "^0.0.1",
     "customize-cra": "^0.2.13",
     "react": "^16.8.6",
     "react-app-rewired": "^2.1.3",
