@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { Auth } from 'aws-amplify';
 // import { Link } from 'react-router-dom';
 import './Home.css';
 import axios from 'axios';
 
 const handleShare = async imageUrl => {
   try {
-    alert(imageUrl);
+    const user = await Auth.currentAuthenticatedUser();
     const endpoint =
-      'https://your-api-gateway-endpoint.execute-api.us-east-1.amazonaws.com/prod/share';
+      'https://vjerv5mi28.execute-api.us-east-1.amazonaws.com/dev/share';
     const res = await axios.get(endpoint, {
       params: {
         imageUrl,
+        userId: user.username,
       },
     });
     console.log(res);
@@ -35,10 +37,6 @@ const Home = () => {
     setGridTemplateRows(`repeat(${Math.ceil(cards.length / 5)}, auto)`);
     setGridTemplateColumns(`repeat(${Math.ceil(cards.length / 4)}, auto)`);
   }, [cards.length]);
-
-  // const handleShare = imageUrl => {
-  //   alert(imageUrl);
-  // };
 
   return (
     <div className="home-container">

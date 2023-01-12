@@ -1,0 +1,24 @@
+service: apideploy-service
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: dev
+  region: us-east-1
+
+# exclude all files
+package:
+  individually: true
+  exclude:
+    - ./**
+
+functions:
+  share:
+    handler: share.handler
+    package:
+      include:
+        - share.py
+    events:
+      - http:
+          path: share
+          method: get
