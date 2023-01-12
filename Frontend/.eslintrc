@@ -45,7 +45,8 @@
         ],
         "react/no-unescaped-entities": 0,
         "no-extra-boolean-cast": 0,
-        "flowtype/no-types-missing-file-annotation": 0
+        "flowtype/no-types-missing-file-annotation": 0,
+        "no-console": 1
     },
     "globals": {
         "window": false,

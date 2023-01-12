@@ -14,9 +14,9 @@ const Routes = ({ authState }: Props) =>
   authState !== 'signedIn' ? null : (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={Views.Profile} />
+        <Route exact path="/" component={Views.Home} />
         <Route path="/dashboard" component={Views.Dashboard} />
-        <Route path="/home" component={Views.Home} />
+        <Route path="/profile" component={Views.Profile} />
       </Switch>
     </Router>
   );
