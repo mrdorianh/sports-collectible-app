@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Authenticator } from 'aws-amplify-react';
+import { Provider as ReduxProvider } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Routes from './Routes';
+
+import authenticatorConfig from './config/authenticatorConfig';
+
+import configureStore from './redux/configureStore';
+
+// // TODO to check if values are coming or not
+// console.log(authenticatorConfig, 'authenticatorConfig'); // eslint-disable-line
+
+const store = configureStore();
+
+const App = () => (
+  <ReduxProvider store={store}>
+    <Authenticator amplifyConfig={authenticatorConfig}>
+      <Routes />
+    </Authenticator>
+  </ReduxProvider>
+);
 
 export default App;
